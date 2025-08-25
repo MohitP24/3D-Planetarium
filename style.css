@@ -1,0 +1,137 @@
+:root {
+    --bg-color: #0d0d1a;
+    --text-color: #e0e0ff;
+    --ui-bg-color: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.starfield-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 90px 40px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 150px 10px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 200px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 240px 120px, #ccc, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 280px 200px, #eee, rgba(0,0,0,0));
+    background-size: 300px 300px;
+    animation: twinkle 10s infinite alternate;
+}
+
+@keyframes twinkle {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100px 100px;
+    }
+}
+
+#ui-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background-color: var(--ui-bg-color);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+}
+
+#planet-title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0 0 5px 0;
+}
+
+#ui-container p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin: 0;
+}
+
+#top-nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    display: flex;
+    gap: 20px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, color 0.3s;
+    font-size: 0.9rem;
+}
+
+.dropbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: var(--text-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--ui-bg-color);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+    top: 100%;
+    margin-top: 10px;
+}
+
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.dropdown-content button:hover,
+.dropdown-content button.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content.show {
+    display: flex;
+    flex-direction: column;
+}
+
+canvas {
+    display: block;
+}
